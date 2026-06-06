@@ -1,0 +1,88 @@
+[build-system]
+requires      = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name        = "fedmed"
+version     = "2.1.0"
+description = "Privacy-Preserving Federated Learning for Medical Imaging"
+readme      = "README.md"
+requires-python = ">=3.10"
+
+# =============================================================================
+# RUFF  —  fast linter + formatter (replaces flake8 + isort + pyupgrade)
+# =============================================================================
+[tool.ruff]
+line-length    = 100
+target-version = "py310"
+src            = [".", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+    "N",    # pep8-naming
+    "SIM",  # flake8-simplify
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # do not perform function calls in default args
+    "N803",  # argument name should be lowercase (ML convention: X, y)
+    "N806",  # variable should be lowercase (ML convention: A, B)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["common", "config", "security", "checkpoint", "logger"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# =============================================================================
+# PYTEST
+# =============================================================================
+[tool.pytest.ini_options]
+testpaths       = ["tests"]
+python_files    = ["test_*.py"]
+python_classes  = ["Test*"]
+python_functions= ["test_*"]
+addopts         = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "-p", "no:warnings",   # suppress third-party deprecation noise in CI
+]
+markers = [
+    "slow: marks tests as slow (deselect with -m 'not slow')",
+    "gpu:  marks tests requiring CUDA",
+]
+
+# =============================================================================
+# MYPY  —  static type checking
+# =============================================================================
+[tool.mypy]
+python_version         = "3.10"
+warn_return_any        = true
+warn_unused_configs    = true
+disallow_untyped_defs  = true
+ignore_missing_imports = true   # many ML libs lack stubs
+exclude                = ["tests/"]
+
+# =============================================================================
+# COVERAGE
+# =============================================================================
+[tool.coverage.run]
+source   = ["."]
+omit     = ["tests/*", "*/site-packages/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]

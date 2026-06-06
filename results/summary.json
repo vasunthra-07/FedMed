@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-06-05 21:27:38",
+  "baselines": [
+    "centralized",
+    "fedavg",
+    "fedprox",
+    "fedprox_dp"
+  ],
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "summary": {
+    "centralized": {
+      "runs": 3,
+      "accuracy": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "precision": {
+        "mean": 0.15811011904761904,
+        "std": 0.054830302297437176
+      },
+      "recall": {
+        "mean": 0.6045019157088122,
+        "std": 0.10496449868575267
+      },
+      "f1": {
+        "mean": 0.2491912405126291,
+        "std": 0.07832241673394802
+      },
+      "roc_auc": {
+        "mean": 0.43688350340136056,
+        "std": 0.06980601296120013
+      },
+      "loss": {
+        "mean": 0.6919741084178289,
+        "std": 0.00367063416056035
+      },
+      "epsilon": {
+        "mean": null,
+        "std": null
+      },
+      "runtime_s": {
+        "mean": 0.6131551999909183,
+        "std": 0.05264548933911041
+      }
+    },
+    "fedavg": {
+      "runs": 3,
+      "accuracy": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "precision": {
+        "mean": 0.15811011904761904,
+        "std": 0.054830302297437176
+      },
+      "recall": {
+        "mean": 0.6045019157088122,
+        "std": 0.10496449868575267
+      },
+      "f1": {
+        "mean": 0.2491912405126291,
+        "std": 0.07832241673394802
+      },
+      "roc_auc": {
+        "mean": 0.45729875283446714,
+        "std": 0.04483398748837238
+      },
+      "loss": {
+        "mean": 0.6927074690659841,
+        "std": 0.00146465261799822
+      },
+      "epsilon": {
+        "mean": null,
+        "std": null
+      },
+      "runtime_s": {
+        "mean": 0.5098275667211661,
+        "std": 0.01290572315764683
+      }
+    },
+    "fedprox": {
+      "runs": 3,
+      "accuracy": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "precision": {
+        "mean": 0.15811011904761904,
+        "std": 0.054830302297437176
+      },
+      "recall": {
+        "mean": 0.6045019157088122,
+        "std": 0.10496449868575267
+      },
+      "f1": {
+        "mean": 0.2491912405126291,
+        "std": 0.07832241673394802
+      },
+      "roc_auc": {
+        "mean": 0.47574483497102554,
+        "std": 0.037579175787653546
+      },
+      "loss": {
+        "mean": 0.6927074790000916,
+        "std": 0.0014646523280168122
+      },
+      "epsilon": {
+        "mean": null,
+        "std": null
+      },
+      "runtime_s": {
+        "mean": 0.5707761333324015,
+        "std": 0.007728771913385579
+      }
+    },
+    "fedprox_dp": {
+      "runs": 3,
+      "accuracy": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "precision": {
+        "mean": 0.14657738095238096,
+        "std": 0.048770604583672286
+      },
+      "recall": {
+        "mean": 0.6267241379310344,
+        "std": 0.1274737604653193
+      },
+      "f1": {
+        "mean": 0.2369062402125345,
+        "std": 0.07325082005274411
+      },
+      "roc_auc": {
+        "mean": 0.5016109221466364,
+        "std": 0.0711078493629489
+      },
+      "loss": {
+        "mean": 0.6927265326182047,
+        "std": 0.001403706315016214
+      },
+      "epsilon": {
+        "mean": 6.892111729087538,
+        "std": 0.0
+      },
+      "runtime_s": {
+        "mean": 1.0408938999753445,
+        "std": 0.08474856982262595
+      }
+    }
+  },
+  "limitations": [
+    "Default runner uses deterministic synthetic data for fast evidence generation.",
+    "Results are not clinical validation.",
+    "DP run reports accountant epsilon for configured synthetic training steps."
+  ]
+}

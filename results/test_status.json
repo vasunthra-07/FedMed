@@ -1,0 +1,7 @@
+{
+  "generated_at": "2026-06-05 21:27:20",
+  "command": "python -m pytest -q",
+  "status": "passed",
+  "tests_collected": 87,
+  "duration_s": 39.04
+}
