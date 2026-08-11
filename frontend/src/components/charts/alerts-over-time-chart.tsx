@@ -24,10 +24,11 @@ export function AlertsOverTimeChart() {
           <XAxis dataKey="label" tick={{ fontSize: 11 }} interval={1} />
           <YAxis tick={{ fontSize: 11 }} allowDecimals={false} width={28} />
           <Tooltip
-            contentStyle={{ fontSize: 12, borderRadius: 8 }}
+            cursor={{ fill: "var(--muted)", opacity: 0.4 }}
+            contentStyle={{ fontSize: 12, borderRadius: 8, borderColor: "var(--border)" }}
             labelClassName="font-medium"
           />
-          <Legend wrapperStyle={{ fontSize: 11 }} />
+          <Legend wrapperStyle={{ fontSize: 11, paddingTop: 4 }} iconType="circle" iconSize={8} />
           <Bar dataKey="critical" stackId="sev" name="Critical" fill={SEVERITY_COLORS.critical} radius={[0, 0, 0, 0]} />
           <Bar dataKey="high" stackId="sev" name="High" fill={SEVERITY_COLORS.high} />
           <Bar dataKey="moderate" stackId="sev" name="Moderate" fill={SEVERITY_COLORS.moderate} />
