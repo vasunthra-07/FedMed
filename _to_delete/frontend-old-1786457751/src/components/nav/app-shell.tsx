@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronsUpDown, Home } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 
 const VIEWERS = [
   { name: "Dr. Anita Rao", role: "Doctor · Internal Medicine" },
@@ -21,40 +21,18 @@ const VIEWERS = [
   { name: "Hospital Admin", role: "Hospital Administrator" },
 ];
 
-// The mock login screen at "/" is a full-bleed page with no app chrome —
-// nothing has been "entered" yet, so the sidebar/nav don't apply there.
-const CHROMELESS_ROUTES = new Set(["/"]);
-
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-
-  if (CHROMELESS_ROUTES.has(pathname)) {
-    return <>{children}</>;
-  }
 
   return (
     <div className="flex min-h-screen">
       <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r bg-card lg:flex">
-        <Link href="/home" className="flex h-14 items-center gap-2 border-b px-4 hover:bg-accent/50">
+        <div className="flex h-14 items-center gap-2 border-b px-4">
           <BRAND.icon className="size-5 text-primary" />
           <span className="text-sm font-semibold tracking-tight">{BRAND.name}</span>
-        </Link>
+        </div>
 
         <nav className="flex-1 overflow-y-auto px-2 py-3">
-          <div className="mb-4">
-            <Link
-              href="/home"
-              className={cn(
-                "flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors",
-                pathname === "/home"
-                  ? "bg-secondary text-secondary-foreground"
-                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-              )}
-            >
-              <Home className="size-4 shrink-0" />
-              Overview
-            </Link>
-          </div>
           {NAV_SECTIONS.map((section) => (
             <div key={section.id} className="mb-4">
               <p className="px-2 pb-1 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
