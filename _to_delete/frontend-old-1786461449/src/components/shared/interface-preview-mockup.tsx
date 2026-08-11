@@ -2,12 +2,12 @@ import { AlertTriangle, ClipboardList, FileClock, Network, Stethoscope, Users } 
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { icon: Stethoscope, label: "Dashboard" },
-  { icon: Users, label: "Patients" },
-  { icon: ClipboardList, label: "Review queue" },
-  { icon: AlertTriangle, label: "Safety alerts" },
-  { icon: Network, label: "Federation" },
-  { icon: FileClock, label: "Audit trail" },
+  { icon: Stethoscope, label: "Dashboard", active: false },
+  { icon: Users, label: "Patients", active: false },
+  { icon: ClipboardList, label: "Review queue", active: true },
+  { icon: AlertTriangle, label: "Safety alerts", active: false },
+  { icon: Network, label: "Federation", active: false },
+  { icon: FileClock, label: "Audit trail", active: false },
 ];
 
 const ROWS: { severity: "critical" | "high" | "moderate" | "low"; width: string }[] = [
@@ -30,17 +30,7 @@ const SEVERITY_DOT: Record<string, string> = {
  * mistaken for real patient data, while still communicating the layout:
  * sidebar nav, quick-filter chips, and a severity-ranked case list.
  */
-export function InterfacePreviewMockup({
-  className,
-  url = "medx.app/pharmacist/queue",
-  activeLabel = "Review queue",
-  hideSidebar = false,
-}: {
-  className?: string;
-  url?: string;
-  activeLabel?: string;
-  hideSidebar?: boolean;
-}) {
+export function InterfacePreviewMockup({ className }: { className?: string }) {
   return (
     <div className={cn("overflow-hidden rounded-xl border bg-card shadow-sm", className)}>
       {/* Fake browser chrome */}
@@ -48,26 +38,27 @@ export function InterfacePreviewMockup({
         <span className="size-2 rounded-full bg-severity-critical/50" />
         <span className="size-2 rounded-full bg-severity-moderate/50" />
         <span className="size-2 rounded-full bg-severity-low/50" />
-        <span className="ml-2 truncate rounded-full bg-background px-2.5 py-0.5 text-[10px] text-muted-foreground">
-          {url}
+        <span className="ml-2 rounded-full bg-background px-2.5 py-0.5 text-[10px] text-muted-foreground">
+          medx.app/pharmacist/queue
         </span>
       </div>
 
       <div className="flex">
         {/* Mini sidebar */}
-        {!hideSidebar && (
-          <div className="hidden w-28 shrink-0 flex-col gap-1 border-r bg-muted/20 p-2 sm:flex">
-            {NAV_ITEMS.map((item) => {
-              const active = item.label === activeLabel;
-              return (
-                <div key={item.label} className={cn("flex items-center gap-1.5 rounded px-1.5 py-1", active ? "bg-secondary" : "")}>
-                  <item.icon className={cn("size-3", active ? "text-secondary-foreground" : "text-muted-foreground")} />
-                  <span className={cn("h-1.5 flex-1 rounded-full", active ? "bg-secondary-foreground/40" : "bg-muted-foreground/20")} />
-                </div>
-              );
-            })}
-          </div>
-        )}
+        <div className="hidden w-28 shrink-0 flex-col gap-1 border-r bg-muted/20 p-2 sm:flex">
+          {NAV_ITEMS.map((item) => (
+            <div
+              key={item.label}
+              className={cn(
+                "flex items-center gap-1.5 rounded px-1.5 py-1",
+                item.active ? "bg-secondary" : ""
+              )}
+            >
+              <item.icon className={cn("size-3", item.active ? "text-secondary-foreground" : "text-muted-foreground")} />
+              <span className={cn("h-1.5 flex-1 rounded-full", item.active ? "bg-secondary-foreground/40" : "bg-muted-foreground/20")} />
+            </div>
+          ))}
+        </div>
 
         {/* Mini content area */}
         <div className="flex-1 p-3">

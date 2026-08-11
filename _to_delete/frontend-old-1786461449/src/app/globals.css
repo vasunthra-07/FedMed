@@ -6,42 +6,37 @@
 :root {
   --radius: 0.5rem;
 
-  /* Clinical-trust palette — calm, premium, structured. */
-  --background: #f6f8fb;
-  --foreground: #16202a;
+  --background: oklch(0.99 0.002 260);
+  --foreground: oklch(0.18 0.01 260);
 
-  --card: #ffffff;
-  --card-foreground: #16202a;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 260);
 
-  --popover: #ffffff;
-  --popover-foreground: #16202a;
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 260);
 
-  --primary: #1e4d8f;
-  --primary-dark: #163b6c;
-  --primary-soft: #eaf1fb;
-  --primary-foreground: #ffffff;
+  --primary: oklch(0.38 0.13 260);
+  --primary-foreground: oklch(0.98 0.005 260);
 
-  --secondary: #eef3f8;
-  --secondary-foreground: #16202a;
+  --secondary: oklch(0.96 0.004 260);
+  --secondary-foreground: oklch(0.24 0.01 260);
 
-  --muted: #eef3f8;
-  --muted-foreground: #546476;
+  --muted: oklch(0.96 0.004 260);
+  --muted-foreground: oklch(0.48 0.02 260);
 
-  --surface-alt: #eef3f8;
+  --accent: oklch(0.94 0.02 260);
+  --accent-foreground: oklch(0.24 0.01 260);
 
-  --accent: #eaf1fb;
-  --accent-foreground: #163b6c;
+  --destructive: oklch(0.52 0.19 25);
+  --destructive-foreground: oklch(0.98 0.005 260);
 
-  --destructive: #c53b32;
-  --destructive-foreground: #ffffff;
-
-  --border: #d8e0e8;
-  --input: #d8e0e8;
-  --ring: #1e4d8f;
+  --border: oklch(0.9 0.005 260);
+  --input: oklch(0.9 0.005 260);
+  --ring: oklch(0.55 0.08 260);
 
   /* Severity scale — visual channel only; the *value* rendered is always
      whatever the backend returns. Unknown values fall back to --severity-unknown. */
-  --severity-critical: #c53b32;
+  --severity-critical: oklch(0.5 0.21 25);
   --severity-critical-bg: oklch(0.96 0.04 25);
   --severity-critical-border: oklch(0.8 0.12 25);
 
@@ -64,13 +59,13 @@
   /* Status scale for workflow states */
   --status-neutral: oklch(0.5 0.01 260);
   --status-neutral-bg: oklch(0.95 0.004 260);
-  --status-info: #1e4d8f;
-  --status-info-bg: #eaf1fb;
-  --status-success: #2f7d57;
+  --status-info: oklch(0.5 0.14 250);
+  --status-info-bg: oklch(0.95 0.03 250);
+  --status-success: oklch(0.55 0.14 150);
   --status-success-bg: oklch(0.95 0.04 150);
-  --status-warning: #d4872c;
+  --status-warning: oklch(0.62 0.15 80);
   --status-warning-bg: oklch(0.96 0.05 85);
-  --status-danger: #c53b32;
+  --status-danger: oklch(0.52 0.19 25);
   --status-danger-bg: oklch(0.96 0.04 25);
 }
 
@@ -112,14 +107,11 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-primary-soft: var(--primary-soft);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-surface-alt: var(--surface-alt);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -175,11 +167,6 @@
   }
   table {
     font-variant-numeric: tabular-nums;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
   }
 }
 
