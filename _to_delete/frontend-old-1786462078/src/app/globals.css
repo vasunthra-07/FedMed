@@ -26,7 +26,6 @@
 
   --muted: #eef3f8;
   --muted-foreground: #546476;
-  --muted-faint: #7a8794;
 
   --surface-alt: #eef3f8;
 
@@ -120,7 +119,6 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-muted-faint: var(--muted-faint);
   --color-surface-alt: var(--surface-alt);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
