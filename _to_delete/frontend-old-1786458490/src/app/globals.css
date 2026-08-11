@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.5rem;
+
+  --background: oklch(0.99 0.002 260);
+  --foreground: oklch(0.18 0.01 260);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 260);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 260);
+
+  --primary: oklch(0.38 0.13 260);
+  --primary-foreground: oklch(0.98 0.005 260);
+
+  --secondary: oklch(0.96 0.004 260);
+  --secondary-foreground: oklch(0.24 0.01 260);
+
+  --muted: oklch(0.96 0.004 260);
+  --muted-foreground: oklch(0.48 0.02 260);
+
+  --accent: oklch(0.94 0.02 260);
+  --accent-foreground: oklch(0.24 0.01 260);
+
+  --destructive: oklch(0.52 0.19 25);
+  --destructive-foreground: oklch(0.98 0.005 260);
+
+  --border: oklch(0.9 0.005 260);
+  --input: oklch(0.9 0.005 260);
+  --ring: oklch(0.55 0.08 260);
+
+  /* Severity scale — visual channel only; the *value* rendered is always
+     whatever the backend returns. Unknown values fall back to --severity-unknown. */
+  --severity-critical: oklch(0.5 0.21 25);
+  --severity-critical-bg: oklch(0.96 0.04 25);
+  --severity-critical-border: oklch(0.8 0.12 25);
+
+  --severity-high: oklch(0.58 0.17 45);
+  --severity-high-bg: oklch(0.96 0.06 55);
+  --severity-high-border: oklch(0.82 0.13 55);
+
+  --severity-moderate: oklch(0.62 0.14 85);
+  --severity-moderate-bg: oklch(0.96 0.06 95);
+  --severity-moderate-border: oklch(0.85 0.12 95);
+
+  --severity-low: oklch(0.5 0.09 240);
+  --severity-low-bg: oklch(0.96 0.02 240);
+  --severity-low-border: oklch(0.85 0.03 240);
+
+  --severity-unknown: oklch(0.5 0 0);
+  --severity-unknown-bg: oklch(0.95 0 0);
+  --severity-unknown-border: oklch(0.82 0 0);
+
+  /* Status scale for workflow states */
+  --status-neutral: oklch(0.5 0.01 260);
+  --status-neutral-bg: oklch(0.95 0.004 260);
+  --status-info: oklch(0.5 0.14 250);
+  --status-info-bg: oklch(0.95 0.03 250);
+  --status-success: oklch(0.55 0.14 150);
+  --status-success-bg: oklch(0.95 0.04 150);
+  --status-warning: oklch(0.62 0.15 80);
+  --status-warning-bg: oklch(0.96 0.05 85);
+  --status-danger: oklch(0.52 0.19 25);
+  --status-danger-bg: oklch(0.96 0.04 25);
+}
+
+.dark {
+  --background: oklch(0.16 0.01 260);
+  --foreground: oklch(0.94 0.004 260);
+
+  --card: oklch(0.2 0.01 260);
+  --card-foreground: oklch(0.94 0.004 260);
+
+  --popover: oklch(0.2 0.01 260);
+  --popover-foreground: oklch(0.94 0.004 260);
+
+  --primary: oklch(0.75 0.1 260);
+  --primary-foreground: oklch(0.16 0.01 260);
+
+  --secondary: oklch(0.26 0.01 260);
+  --secondary-foreground: oklch(0.94 0.004 260);
+
+  --muted: oklch(0.26 0.01 260);
+  --muted-foreground: oklch(0.68 0.015 260);
+
+  --accent: oklch(0.3 0.03 260);
+  --accent-foreground: oklch(0.94 0.004 260);
+
+  --destructive: oklch(0.62 0.19 25);
+  --destructive-foreground: oklch(0.98 0.005 260);
+
+  --border: oklch(0.3 0.01 260);
+  --input: oklch(0.3 0.01 260);
+  --ring: oklch(0.6 0.08 260);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-severity-critical: var(--severity-critical);
+  --color-severity-critical-bg: var(--severity-critical-bg);
+  --color-severity-critical-border: var(--severity-critical-border);
+  --color-severity-high: var(--severity-high);
+  --color-severity-high-bg: var(--severity-high-bg);
+  --color-severity-high-border: var(--severity-high-border);
+  --color-severity-moderate: var(--severity-moderate);
+  --color-severity-moderate-bg: var(--severity-moderate-bg);
+  --color-severity-moderate-border: var(--severity-moderate-border);
+  --color-severity-low: var(--severity-low);
+  --color-severity-low-bg: var(--severity-low-bg);
+  --color-severity-low-border: var(--severity-low-border);
+  --color-severity-unknown: var(--severity-unknown);
+  --color-severity-unknown-bg: var(--severity-unknown-bg);
+  --color-severity-unknown-border: var(--severity-unknown-border);
+
+  --color-status-neutral: var(--status-neutral);
+  --color-status-neutral-bg: var(--status-neutral-bg);
+  --color-status-info: var(--status-info);
+  --color-status-info-bg: var(--status-info-bg);
+  --color-status-success: var(--status-success);
+  --color-status-success-bg: var(--status-success-bg);
+  --color-status-warning: var(--status-warning);
+  --color-status-warning-bg: var(--status-warning-bg);
+  --color-status-danger: var(--status-danger);
+  --color-status-danger-bg: var(--status-danger-bg);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+  }
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+}
