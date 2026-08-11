@@ -2,7 +2,6 @@ import { Badge } from "@/components/ui/badge";
 import { SeverityChip } from "@/components/shared/severity-chip";
 import { RecommendationBlock } from "@/components/shared/recommendation-block";
 import { formatDateTime, formatEnumLabel } from "@/lib/format";
-import { severityStripeClassRelative } from "@/lib/severity";
 import { cn } from "@/lib/utils";
 import type { SafetyIssue } from "@/lib/types";
 import { Bot } from "lucide-react";
@@ -19,8 +18,9 @@ export function MedicationSafetyCard({
   return (
     <div
       className={cn(
-        "rounded-lg border bg-card p-4 pl-5",
-        severityStripeClassRelative(issue.severity),
+        "rounded-lg border bg-card p-4",
+        issue.severity === "critical" && "border-severity-critical-border",
+        issue.severity === "high" && "border-severity-high-border",
         className
       )}
     >

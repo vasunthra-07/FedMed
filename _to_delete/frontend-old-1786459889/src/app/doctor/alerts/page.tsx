@@ -9,7 +9,6 @@ import { LoadingState } from "@/components/shared/loading-state";
 import { EmptyState } from "@/components/shared/empty-state";
 import { MedicationSafetyCard } from "@/components/shared/medication-safety-card";
 import { FacetedFilter } from "@/components/shared/faceted-filter";
-import { QuickFilterBar, type QuickFilterOption } from "@/components/shared/quick-filter-bar";
 import { Input } from "@/components/ui/input";
 import { useAllAlerts } from "@/lib/hooks/use-alerts";
 import { FileClock } from "lucide-react";
@@ -27,35 +26,14 @@ const CATEGORY_OPTIONS = [
 ].map((v) => ({ label: v, value: v }));
 const STATUS_OPTIONS = ["open", "acknowledged", "action_taken", "resolved", "dismissed"].map((v) => ({ label: v, value: v }));
 
-type QuickFilterKey = "all" | "critical" | "high" | "needs_action" | "resolved";
-
 export default function SafetyAlertsPage() {
   const { data: alerts, isLoading } = useAllAlerts();
-  const [quickFilter, setQuickFilter] = React.useState<QuickFilterKey>("all");
   const [severity, setSeverity] = React.useState<string[]>([]);
   const [category, setCategory] = React.useState<string[]>([]);
   const [status, setStatus] = React.useState<string[]>([]);
   const [query, setQuery] = React.useState("");
 
-  const allAlerts = alerts ?? [];
-  const criticalCount = allAlerts.filter((a) => a.severity === "critical").length;
-  const highCount = allAlerts.filter((a) => a.severity === "high").length;
-  const needsActionCount = allAlerts.filter((a) => a.reviewStatus === "open" || a.reviewStatus === "acknowledged").length;
-  const resolvedCount = allAlerts.filter((a) => a.reviewStatus === "resolved" || a.reviewStatus === "dismissed").length;
-
-  const quickFilterOptions: QuickFilterOption[] = [
-    { value: "all", label: "All", count: allAlerts.length },
-    { value: "critical", label: "Critical", count: criticalCount, tone: "danger" },
-    { value: "high", label: "High", count: highCount, tone: "warning" },
-    { value: "needs_action", label: "Needs action", count: needsActionCount, tone: "warning" },
-    { value: "resolved", label: "Resolved / dismissed", count: resolvedCount, tone: "success" },
-  ];
-
-  const filtered = allAlerts.filter((a) => {
-    if (quickFilter === "critical" && a.severity !== "critical") return false;
-    if (quickFilter === "high" && a.severity !== "high") return false;
-    if (quickFilter === "needs_action" && !(a.reviewStatus === "open" || a.reviewStatus === "acknowledged")) return false;
-    if (quickFilter === "resolved" && !(a.reviewStatus === "resolved" || a.reviewStatus === "dismissed")) return false;
+  const filtered = (alerts ?? []).filter((a) => {
     if (severity.length && !severity.includes(a.severity)) return false;
     if (category.length && !category.includes(a.category)) return false;
     if (status.length && !status.includes(a.reviewStatus)) return false;
@@ -71,8 +49,6 @@ export default function SafetyAlertsPage() {
   return (
     <div className="flex flex-col gap-5">
       <PageHeader title="Medication safety alerts" description="Every backend-detected issue across your patients, most recent first." />
-
-      <QuickFilterBar options={quickFilterOptions} value={quickFilter} onChange={(v) => setQuickFilter(v as QuickFilterKey)} />
 
       <div className="flex flex-wrap items-center gap-2">
         <div className="relative w-full max-w-xs">
